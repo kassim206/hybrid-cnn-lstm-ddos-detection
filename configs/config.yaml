@@ -1,0 +1,51 @@
+project:
+  name: hybrid-cnn-lstm-ddos-detection
+  year: 2026
+  author: Mohammed Kassim Cherukodan
+  thesis_title: Hybrid Machine Learning-Based Real-Time DDoS Detection and Mitigation for Web Applications
+
+paths:
+  raw_data_dir: data/raw
+  processed_data_dir: data/processed
+  model_dir: models
+  results_dir: results
+  figures_dir: results/figures
+  metrics_dir: results/metrics
+
+dataset:
+  name: CIC-DDoS2019
+  target_column: Label
+  binary_classification: true
+
+training:
+  test_size: 0.15
+  validation_size: 0.15
+  random_state: 42
+  batch_size: 64
+  epochs: 25
+  sequence_length: 10
+
+model:
+  cnn_filters: 64
+  kernel_size: 3
+  lstm_units: 64
+  dropout_rate: 0.3
+  dense_units: 64
+  activation: relu
+  output_activation: sigmoid
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - roc_auc
+    - inference_latency
+
+mitigation:
+  low_risk_threshold: 0.50
+  medium_risk_threshold: 0.70
+  high_risk_threshold: 0.90
+  enable_rate_limiting: true
+  enable_ip_blocking: true

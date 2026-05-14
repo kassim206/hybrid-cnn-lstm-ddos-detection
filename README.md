@@ -58,41 +58,97 @@ The main objectives of this project are:
 
 ---
 
-## System Architecture
+## Thesis Figures
+
+### Feature Correlation Heatmap
 
 <p align="center">
-  <img src="results/figures/system_architecture.png" width="750">
+  <img src="thesis_figures/figure_4.1_correlation_heatmap.png" width="700">
 </p>
 
 <p align="center">
-  <i>Figure: Proposed CNN-LSTM-based DDoS detection and mitigation workflow.</i>
-</p>
-
-> If the image does not display, check that the file name exists inside `results/figures/`.
-
----
-
-## Example Thesis Figures
-
-### Model Performance Comparison
-
-<p align="center">
-  <img src="results/figures/model_comparison.png" width="700">
+  <i>Figure 4.1: Feature correlation heatmap after feature selection.</i>
 </p>
 
 ### CNN-LSTM Training Curves
 
 <p align="center">
-  <img src="results/figures/cnn_lstm_training_curves.png" width="700">
+  <img src="thesis_figures/figure_4.2_training_curves.png" width="700">
+</p>
+
+<p align="center">
+  <i>Figure 4.2: CNN-LSTM training loss and accuracy curves.</i>
+</p>
+
+### Model Performance Comparison
+
+<p align="center">
+  <img src="thesis_figures/figure_4.3_performance_comparison.png" width="700">
+</p>
+
+<p align="center">
+  <i>Figure 4.3: Comparative performance of Random Forest, SVM, and CNN-LSTM models.</i>
 </p>
 
 ### Inference Latency Comparison
 
 <p align="center">
-  <img src="results/figures/inference_latency_comparison.png" width="700">
+  <img src="thesis_figures/figure_4.4_latency_comparison.png" width="700">
 </p>
 
-> Note: If an image does not display, replace the image path with the correct file name from your `results/figures/` or `thesis_figures/` folder.
+<p align="center">
+  <i>Figure 4.4: Inference latency comparison for all evaluated models.</i>
+</p>
+
+### Dataset Class Distribution
+
+<p align="center">
+  <img src="thesis_figures/figure_4.5_class_distribution.png" width="700">
+</p>
+
+<p align="center">
+  <i>Figure 4.5: Dataset class distribution after preprocessing.</i>
+</p>
+
+---
+
+## Additional Figures
+
+### Chapter 2 Correlation Heatmap
+
+<p align="center">
+  <img src="thesis_figures/figure_2.1_correlation_heatmap.png" width="700">
+</p>
+
+### Chapter 2 Attack Distribution
+
+<p align="center">
+  <img src="thesis_figures/figure_2.2_attack_distribution.png" width="700">
+</p>
+
+### Chapter 3 Correlation Heatmap
+
+<p align="center">
+  <img src="thesis_figures/figure_3.1_correlation_heatmap.png" width="700">
+</p>
+
+### Chapter 3 Training Curves
+
+<p align="center">
+  <img src="thesis_figures/figure_3.2_training_curves.png" width="700">
+</p>
+
+### Chapter 3 Performance Comparison
+
+<p align="center">
+  <img src="thesis_figures/figure_3.3_performance_comparison.png" width="700">
+</p>
+
+### Chapter 3 Latency Comparison
+
+<p align="center">
+  <img src="thesis_figures/figure_3.4_latency_comparison.png" width="700">
+</p>
 
 ---
 
@@ -122,6 +178,19 @@ hybrid-cnn-lstm-ddos-detection/
 │   ├── figures/
 │   ├── metrics/
 │   └── README.md
+│
+├── thesis_figures/
+│   ├── figure_2.1_correlation_heatmap.png
+│   ├── figure_2.2_attack_distribution.png
+│   ├── figure_3.1_correlation_heatmap.png
+│   ├── figure_3.2_training_curves.png
+│   ├── figure_3.3_performance_comparison.png
+│   ├── figure_3.4_latency_comparison.png
+│   ├── figure_4.1_correlation_heatmap.png
+│   ├── figure_4.2_training_curves.png
+│   ├── figure_4.3_performance_comparison.png
+│   ├── figure_4.4_latency_comparison.png
+│   └── figure_4.5_class_distribution.png
 │
 ├── scripts/
 │   └── visualizations/
@@ -392,8 +461,9 @@ Current status:
 
 ```text
 Project structure: Completed
-Documentation: In progress
+Documentation: Completed
 Visualization scripts: Added
+Thesis figures: Added
 Model implementation: In progress
 Evaluation pipeline: In progress
 Mitigation module: In progress

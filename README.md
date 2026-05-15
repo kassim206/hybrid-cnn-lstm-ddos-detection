@@ -475,3 +475,12 @@ Mitigation module: In progress
 
 **Mohammed Kassim Cherukodan**  
 GitHub: [kassim206](https://github.com/kassim206)
+<p align="center">
+  <a href="https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/">
+    <b>Project Website</b>
+  </a>
+  |
+  <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026">
+    <b>Thesis Release</b>
+  </a>
+</p>

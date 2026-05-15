@@ -134,7 +134,7 @@ def main():
     # Change to script directory if needed
     script_dir = os.path.dirname(os.path.abspath(__file__))
     if script_dir:
-        os.chdir(script_dir)
+        # os.chdir(script_dir)
         print_info(f"Changed to directory: {os.getcwd()}")
     
     # Step 1: Check dependencies

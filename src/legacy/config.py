@@ -1,0 +1,43 @@
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+MODELS_DIR = os.path.join(BASE_DIR, "models")
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+FIGURES_DIR = os.path.join(RESULTS_DIR, "figures")
+TABLES_DIR = os.path.join(RESULTS_DIR, "tables")
+
+for dir_path in [DATA_DIR, MODELS_DIR, RESULTS_DIR, FIGURES_DIR, TABLES_DIR]:
+    os.makedirs(dir_path, exist_ok=True)
+
+KAGGLE_DATASET = "rodrigorosasilva/cic-ddos2019-30gb-full-dataset-csv-files"
+SAMPLE_ROWS = 200000
+TEST_SIZE = 0.15
+VAL_SIZE = 0.15
+RANDOM_STATE = 42
+
+N_TOP_FEATURES = 30
+CORRELATION_THRESHOLD = 0.85
+
+MAX_SEQUENCE_LENGTH = 100
+EMBEDDING_DIM = 64
+CNN_FILTERS = 64
+CNN_KERNEL_SIZE = 3
+LSTM_UNITS = 64
+DENSE_UNITS = [128, 64]
+DROPOUT_RATE = 0.3
+LEARNING_RATE = 0.001
+BATCH_SIZE = 64
+EPOCHS = 50
+EARLY_STOPPING_PATIENCE = 10
+
+RF_N_ESTIMATORS = 100
+RF_MAX_DEPTH = 20
+SVM_C = 1.0
+SVM_KERNEL = "linear"
+SVM_GAMMA = "scale"
+
+CONFIDENCE_THRESHOLD = 0.85
+RATE_LIMIT_DEFAULT = 100
+RATE_LIMIT_ATTACK = 10
+MITIGATION_DURATION = 300

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hybrid CNN-LSTM-Based Real-Time DDoS Detection and Mitigation</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Hybrid CNN-LSTM-Based Real-Time DDoS Detection and Mitigation</h1>
+      <p class="subtitle">
+        Final Master Thesis Project 2026<br>
+        Hybrid Machine Learning-Based Real-Time DDoS Detection and Mitigation for Web Applications
+      </p>
+
+      <div class="buttons">
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection" target="_blank">GitHub Repository</a>
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026" target="_blank">Thesis Release</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#abstract">Abstract</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#gap">Research Gap</a>
+    <a href="#methodology">Methodology</a>
+    <a href="#results">Results</a>
+    <a href="#figures">Figures</a>
+    <a href="#author">Author</a>
+  </nav>
+
+  <main class="container">
+
+    <section id="abstract" class="card">
+      <h2>Abstract</h2>
+      <p>
+        Distributed Denial of Service attacks are one of the major threats to modern web applications.
+        This thesis proposes a hybrid deep learning framework based on Convolutional Neural Networks
+        and Long Short-Term Memory networks for real-time DDoS detection and mitigation.
+      </p>
+      <p>
+        The CNN component extracts spatial traffic patterns, while the LSTM component captures temporal
+        dependencies across network flow sequences. The proposed model is compared with Random Forest
+        and Support Vector Machine baseline models using standard performance metrics, inference latency,
+        and resource overhead analysis.
+      </p>
+    </section>
+
+    <section id="introduction" class="card">
+      <h2>Introduction</h2>
+      <p>
+        Web applications are increasingly exposed to sophisticated DDoS attacks, especially Layer 7 attacks
+        such as HTTP flood and WebDDoS. These attacks are difficult to detect because they imitate legitimate
+        user behavior and may bypass traditional rule-based detection systems.
+      </p>
+      <p>
+        The aim of this thesis is to design, implement, and evaluate a hybrid machine learning-based
+        real-time DDoS detection and mitigation framework for web applications.
+      </p>
+    </section>
+
+    <section id="gap" class="card">
+      <h2>Research Gap</h2>
+      <p>
+        Traditional machine learning models such as Random Forest and SVM often depend on manual feature
+        engineering and may not capture complex spatial and temporal patterns in network traffic.
+      </p>
+      <p>
+        Standalone CNN models can extract spatial features but may miss long-term temporal dependencies.
+        LSTM models can capture sequence behavior but may not fully extract local spatial feature patterns.
+        This thesis addresses the gap by combining CNN and LSTM into a hybrid detection architecture.
+      </p>
+    </section>
+
+    <section id="methodology" class="card">
+      <h2>Methodology</h2>
+
+      <div class="grid">
+        <div>
+          <h3>1. Dataset Preprocessing</h3>
+          <p>
+            The CIC-DDoS2019 dataset is cleaned by handling missing values, removing infinite values,
+            converting labels, and normalizing numerical features.
+          </p>
+        </div>
+
+        <div>
+          <h3>2. Feature Selection</h3>
+          <p>
+            Correlation analysis and Random Forest feature importance are used to identify the most
+            discriminative network traffic features.
+          </p>
+        </div>
+
+        <div>
+          <h3>3. Baseline Models</h3>
+          <p>
+            Random Forest and Support Vector Machine classifiers are implemented as traditional machine
+            learning baselines.
+          </p>
+        </div>
+
+        <div>
+          <h3>4. CNN-LSTM Model</h3>
+          <p>
+            A hybrid CNN-LSTM architecture is designed to extract spatial and temporal patterns from
+            network flow sequences.
+          </p>
+        </div>
+
+        <div>
+          <h3>5. Evaluation</h3>
+          <p>
+            Models are evaluated using accuracy, precision, recall, F1-score, ROC-AUC, inference latency,
+            and resource overhead.
+          </p>
+        </div>
+
+        <div>
+          <h3>6. Mitigation</h3>
+          <p>
+            A proof-of-concept mitigation module applies dynamic rate limiting, filtering, and IP blocking
+            based on model confidence scores.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="card">
+      <h2>Results Summary</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Random Forest</td>
+            <td>Traditional ML</td>
+            <td>Baseline comparison</td>
+          </tr>
+          <tr>
+            <td>SVM</td>
+            <td>Traditional ML</td>
+            <td>Baseline comparison</td>
+          </tr>
+          <tr>
+            <td>CNN-LSTM</td>
+            <td>Hybrid Deep Learning</td>
+            <td>Proposed model</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="figures" class="card">
+      <h2>Thesis Figures</h2>
+
+      <h3>Feature Correlation Heatmap</h3>
+      <img src="thesis_figures/figure_4.1_correlation_heatmap.png" alt="Feature correlation heatmap" />
+
+      <h3>CNN-LSTM Training Curves</h3>
+      <img src="thesis_figures/figure_4.2_training_curves.png" alt="CNN-LSTM training curves" />
+
+      <h3>Model Performance Comparison</h3>
+      <img src="thesis_figures/figure_4.3_performance_comparison.png" alt="Model performance comparison" />
+
+      <h3>Inference Latency Comparison</h3>
+      <img src="thesis_figures/figure_4.4_latency_comparison.png" alt="Inference latency comparison" />
+
+      <h3>Dataset Class Distribution</h3>
+      <img src="thesis_figures/figure_4.5_class_distribution.png" alt="Dataset class distribution" />
+    </section>
+
+    <section id="author" class="card">
+      <h2>Author Information</h2>
+
+      <p><strong>Author:</strong> Mohammed Kassim Cherukodan</p>
+      <p><strong>Programme:</strong> Applied Informatics</p>
+      <p><strong>University:</strong> Vytautas Magnus University</p>
+      <p><strong>Faculty:</strong> Faculty of Informatics</p>
+      <p><strong>Supervisor:</strong> Prof. Dr. Tomas Krilavičius</p>
+      <p><strong>Year:</strong> 2026</p>
+
+      <h3>Code Repository</h3>
+      <p>
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection" target="_blank">
+          https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection
+        </a>
+      </p>
+
+      <h3>Thesis Release</h3>
+      <p>
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026" target="_blank">
+          v1.0-thesis-2026
+        </a>
+      </p>
+    </section>
+
+    <section class="card warning">
+      <h2>Ethical Use Notice</h2>
+      <p>
+        This project is intended strictly for academic research, defensive cybersecurity education,
+        and controlled laboratory experimentation. Attack simulation scripts or traffic generation tools
+        must only be used in isolated environments owned or explicitly authorized by the user.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Mohammed Kassim Cherukodan |
+      Hybrid CNN-LSTM-Based Real-Time DDoS Detection and Mitigation
+    </p>
+  </footer>
+
+</body>
+</html>

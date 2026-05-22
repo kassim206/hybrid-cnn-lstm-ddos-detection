@@ -21,7 +21,7 @@
 
       <div class="buttons">
         <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection" target="_blank">GitHub Repository</a>
-        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026" target="_blank">Thesis Release</a>
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.1-thesis-experiments" target="_blank">Final Experimental Release</a>
       </div>
     </div>
   </header>
@@ -32,6 +32,8 @@
     <a href="#gap">Research Gap</a>
     <a href="#methodology">Methodology</a>
     <a href="#results">Results</a>
+    <a href="#mitigation">Mitigation</a>
+    <a href="#scope">Scope</a>
     <a href="#figures">Figures</a>
     <a href="#author">Author</a>
   </nav>
@@ -134,34 +136,132 @@
     </section>
 
     <section id="results" class="card">
-      <h2>Results Summary</h2>
+      <h2>Experimental Results</h2>
+
+      <p>
+        The baseline and CNN-LSTM models were evaluated using the processed CIC-DDoS2019 sample dataset.
+        The comparison includes Random Forest, SVM, and the proposed hybrid CNN-LSTM model.
+      </p>
 
       <table>
         <thead>
           <tr>
+            <th>Rank</th>
             <th>Model</th>
-            <th>Type</th>
-            <th>Purpose</th>
+            <th>Accuracy</th>
+            <th>Precision</th>
+            <th>Recall</th>
+            <th>F1-score</th>
+            <th>ROC-AUC</th>
+            <th>Latency (ms/sample)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td>1</td>
             <td>Random Forest</td>
-            <td>Traditional ML</td>
-            <td>Baseline comparison</td>
+            <td>0.999833</td>
+            <td>0.999964</td>
+            <td>0.999856</td>
+            <td>0.999910</td>
+            <td>0.999998</td>
+            <td>0.005417</td>
           </tr>
           <tr>
-            <td>SVM</td>
-            <td>Traditional ML</td>
-            <td>Baseline comparison</td>
-          </tr>
-          <tr>
+            <td>2</td>
             <td>CNN-LSTM</td>
-            <td>Hybrid Deep Learning</td>
-            <td>Proposed model</td>
+            <td>0.993465</td>
+            <td>0.998479</td>
+            <td>0.994445</td>
+            <td>0.996458</td>
+            <td>0.999026</td>
+            <td>0.086719</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>SVM</td>
+            <td>0.990500</td>
+            <td>0.999745</td>
+            <td>0.989974</td>
+            <td>0.994836</td>
+            <td>0.999099</td>
+            <td>0.116428</td>
           </tr>
         </tbody>
       </table>
+
+      <p>
+        Random Forest achieved the highest accuracy and the lowest inference latency in this experimental run.
+        CNN-LSTM also achieved strong detection performance while capturing temporal traffic patterns.
+      </p>
+
+      <h3>Result Files</h3>
+      <p>
+        The generated outputs are available in
+        <code>results/metrics/model_comparison.csv</code>,
+        <code>results/tables/model_comparison.csv</code>,
+        <code>results/figures/model_comparison.png</code>, and
+        <code>results/figures/latency_comparison.png</code>.
+      </p>
+    </section>
+
+    <section id="mitigation" class="card">
+      <h2>Mitigation Simulation Results</h2>
+
+      <p>
+        A safe local mitigation simulation was performed using controlled traffic scenarios.
+        The mitigation module applies different actions based on the model confidence score.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Confidence Score</th>
+            <th>Mitigation Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&lt; 0.50</td>
+            <td>Allow</td>
+          </tr>
+          <tr>
+            <td>0.50 – 0.70</td>
+            <td>Monitor</td>
+          </tr>
+          <tr>
+            <td>0.70 – 0.90</td>
+            <td>Rate Limit</td>
+          </tr>
+          <tr>
+            <td>&gt; 0.90</td>
+            <td>Block</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Generated mitigation outputs are available in
+        <code>results/metrics/mitigation_results.csv</code>,
+        <code>results/tables/mitigation_results.csv</code>,
+        <code>results/figures/mitigation_response.png</code>, and
+        <code>results/figures/resource_overhead.png</code>.
+      </p>
+    </section>
+
+    <section id="scope" class="card">
+      <h2>Experimental Scope Clarification</h2>
+
+      <p>
+        The final experimental evaluation uses the CIC-DDoS2019 dataset and a safe local mitigation simulation.
+        hping3-based traffic generation was considered during the design stage but was not included in the final
+        experimental implementation. It is treated as future work.
+      </p>
+
+      <p>
+        Docker configuration files are provided to support a minimal containerized mitigation test environment.
+        The final implementation does not claim a full public-network attack generation setup.
+      </p>
     </section>
 
     <section id="figures" class="card">
@@ -200,10 +300,17 @@
         </a>
       </p>
 
-      <h3>Thesis Release</h3>
+      <h3>Project Website</h3>
       <p>
-        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026" target="_blank">
-          v1.0-thesis-2026
+        <a href="https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/" target="_blank">
+          https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/
+        </a>
+      </p>
+
+      <h3>Final Experimental Release</h3>
+      <p>
+        <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.1-thesis-experiments" target="_blank">
+          v1.1-thesis-experiments
         </a>
       </p>
     </section>

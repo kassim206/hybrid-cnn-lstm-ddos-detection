@@ -13,6 +13,16 @@
   <img src="https://img.shields.io/badge/Status-In%20Development-yellow" />
 </p>
 
+<p align="center">
+  <a href="https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/">
+    <b>Project Website</b>
+  </a>
+  |
+  <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026">
+    <b>Thesis Release</b>
+  </a>
+</p>
+
 ---
 
 ## Author
@@ -193,6 +203,13 @@ hybrid-cnn-lstm-ddos-detection/
 │   └── figure_4.5_class_distribution.png
 │
 ├── scripts/
+│   ├── 01_download_dataset.py
+│   ├── 02_preprocess_data.py
+│   ├── 03_train_baselines.py
+│   ├── 04_train_cnn_lstm.py
+│   ├── 05_evaluate_models.py
+│   ├── 06_test_mitigation.py
+│   ├── 07_generate_chapter2_graphs.py
 │   └── visualizations/
 │       ├── chapter2_visuals.py
 │       ├── chapter3_visuals.py
@@ -272,16 +289,22 @@ Run the main project pipeline:
 python src\main.py
 ```
 
-Run individual modules:
+Run the experiment runner:
 
 ```powershell
-python src\preprocessing.py
-python src\feature_selection.py
-python src\train_random_forest.py
-python src\train_svm.py
-python src\train_cnn_lstm.py
-python src\evaluate_models.py
-python src\mitigation.py
+python scripts\run_all_old.py
+```
+
+Run individual experiment scripts:
+
+```powershell
+python scripts\01_download_dataset.py
+python scripts\02_preprocess_data.py
+python scripts\03_train_baselines.py
+python scripts\04_train_cnn_lstm.py
+python scripts\05_evaluate_models.py
+python scripts\06_test_mitigation.py
+python scripts\07_generate_chapter2_graphs.py
 ```
 
 Run visualization scripts:
@@ -365,8 +388,6 @@ The project compares three main models:
 
 ---
 
----
-
 ## Experimental Results
 
 The models were evaluated using the processed CIC-DDoS2019 sample dataset. The comparison includes traditional machine learning baselines and the proposed hybrid CNN-LSTM model.
@@ -388,13 +409,17 @@ The models were evaluated using the processed CIC-DDoS2019 sample dataset. The c
 
 ### Result Files
 
-The generated experiment outputs are stored in:
+The generated model evaluation outputs are stored in:
 
 ```text
 results/metrics/model_comparison.csv
 results/tables/model_comparison.csv
 results/figures/model_comparison.png
 results/figures/latency_comparison.png
+```
+
+---
+
 ## Real-Time Mitigation Module
 
 The mitigation module is designed as a proof-of-concept component that can respond to detected DDoS activity.
@@ -410,6 +435,30 @@ The mitigation logic is implemented in:
 
 ```text
 src/mitigation.py
+```
+
+---
+
+## Mitigation Simulation Results
+
+A safe local mitigation simulation was performed using four traffic scenarios: normal traffic, moderate suspicious traffic, high DDoS traffic, and critical DDoS traffic.
+
+The mitigation module applies different actions based on the model confidence score:
+
+| Confidence Score | Mitigation Action |
+|---:|---|
+| < 0.50 | Allow |
+| 0.50 – 0.70 | Monitor |
+| 0.70 – 0.90 | Rate Limit |
+| > 0.90 | Block |
+
+Generated mitigation outputs are stored in:
+
+```text
+results/metrics/mitigation_results.csv
+results/tables/mitigation_results.csv
+results/figures/mitigation_response.png
+results/figures/resource_overhead.png
 ```
 
 ---
@@ -494,9 +543,10 @@ Project structure: Completed
 Documentation: Completed
 Visualization scripts: Added
 Thesis figures: Added
-Model implementation: In progress
-Evaluation pipeline: In progress
-Mitigation module: In progress
+Baseline experiments: Completed
+CNN-LSTM experiment: Completed
+Evaluation comparison: Completed
+Mitigation simulation: Completed
 ```
 
 ---
@@ -505,12 +555,3 @@ Mitigation module: In progress
 
 **Mohammed Kassim Cherukodan**  
 GitHub: [kassim206](https://github.com/kassim206)
-<p align="center">
-  <a href="https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/">
-    <b>Project Website</b>
-  </a>
-  |
-  <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026">
-    <b>Thesis Release</b>
-  </a>
-</p>

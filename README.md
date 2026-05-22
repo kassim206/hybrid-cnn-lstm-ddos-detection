@@ -555,3 +555,9 @@ Mitigation simulation: Completed
 
 **Mohammed Kassim Cherukodan**  
 GitHub: [kassim206](https://github.com/kassim206)
+
+Project Website:  
+https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/
+
+Final Experimental Release:  
+https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.1-thesis-experiments

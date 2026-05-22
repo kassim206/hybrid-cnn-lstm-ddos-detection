@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  ddos-mitigation-test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ddos_mitigation_test
+    volumes:
+      - ../results:/app/results

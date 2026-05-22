@@ -365,6 +365,36 @@ The project compares three main models:
 
 ---
 
+---
+
+## Experimental Results
+
+The models were evaluated using the processed CIC-DDoS2019 sample dataset. The comparison includes traditional machine learning baselines and the proposed hybrid CNN-LSTM model.
+
+### Model Performance Summary
+
+| Rank | Model | Accuracy | Precision | Recall | F1-score | ROC-AUC | Latency (ms/sample) |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 1 | Random Forest | **0.999833** | **0.999964** | **0.999856** | **0.999910** | **0.999998** | **0.005417** |
+| 2 | CNN-LSTM | 0.993465 | 0.998479 | 0.994445 | 0.996458 | 0.999026 | 0.086719 |
+| 3 | SVM | 0.990500 | 0.999745 | 0.989974 | 0.994836 | 0.999099 | 0.116428 |
+
+### Key Findings
+
+- **Random Forest** achieved the highest overall accuracy and the lowest inference latency in this experimental run.
+- **CNN-LSTM** achieved strong detection performance and is important for the thesis because it captures temporal traffic patterns.
+- **SVM** produced good classification performance, but it had higher inference latency compared with Random Forest and CNN-LSTM.
+- The results show that both traditional machine learning and hybrid deep learning methods can detect DDoS traffic effectively on the processed CIC-DDoS2019 sample dataset.
+
+### Result Files
+
+The generated experiment outputs are stored in:
+
+```text
+results/metrics/model_comparison.csv
+results/tables/model_comparison.csv
+results/figures/model_comparison.png
+results/figures/latency_comparison.png
 ## Real-Time Mitigation Module
 
 The mitigation module is designed as a proof-of-concept component that can respond to detected DDoS activity.

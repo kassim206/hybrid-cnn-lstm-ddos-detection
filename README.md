@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/Machine%20Learning-DDoS%20Detection-green" />
   <img src="https://img.shields.io/badge/Deep%20Learning-CNN--LSTM-orange" />
   <img src="https://img.shields.io/badge/Thesis-2026-purple" />
-  <img src="https://img.shields.io/badge/Status-In%20Development-yellow" />
+  <img src="https://img.shields.io/badge/Status-Final%20Experiments%20Completed-brightgreen" />
 </p>
 
 <p align="center">
@@ -18,8 +18,8 @@
     <b>Project Website</b>
   </a>
   |
-  <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.0-thesis-2026">
-    <b>Thesis Release</b>
+  <a href="https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.1-thesis-experiments">
+    <b>Final Experimental Release</b>
   </a>
 </p>
 
@@ -31,7 +31,7 @@
 Master Thesis, Applied Informatics  
 Vytautas Magnus University  
 Faculty of Informatics  
-Supervisor: **Prof. Dr. Audrius Zajanckauskas**  
+Supervisor: **Prof. Dr. Audrius Zajančkauskas**  
 Year: **2026**
 
 ---
@@ -187,6 +187,7 @@ hybrid-cnn-lstm-ddos-detection/
 ├── results/
 │   ├── figures/
 │   ├── metrics/
+│   ├── tables/
 │   └── README.md
 │
 ├── thesis_figures/
@@ -210,10 +211,26 @@ hybrid-cnn-lstm-ddos-detection/
 │   ├── 05_evaluate_models.py
 │   ├── 06_test_mitigation.py
 │   ├── 07_generate_chapter2_graphs.py
+│   ├── traffic_generation/
+│   │   ├── README.md
+│   │   └── hping3_connectivity_test.sh
 │   └── visualizations/
 │       ├── chapter2_visuals.py
 │       ├── chapter3_visuals.py
 │       └── chapter4_visuals.py
+│
+├── docker/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   ├── docker-compose-lab.yml
+│   ├── README.md
+│   └── kali/
+│       └── Dockerfile
+│
+├── docs/
+│   ├── index.html
+│   ├── style.css
+│   └── network_topology.md
 │
 ├── notebooks/
 │   └── README.md
@@ -221,14 +238,12 @@ hybrid-cnn-lstm-ddos-detection/
 ├── configs/
 │   └── config.yaml
 │
-├── docker/
-│   └── README.md
-│
 ├── thesis/
 │   └── thesis_summary.md
 │
 ├── README.md
 ├── requirements.txt
+├── environment_info.txt
 ├── LICENSE
 └── CITATION.cff
 ```
@@ -274,6 +289,23 @@ Activate the environment:
 ```
 
 Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+---
+
+## Virtual Environment Configuration
+
+The Python virtual environment configuration is documented using:
+
+```text
+requirements.txt
+environment_info.txt
+```
+
+The project was executed using Python 3.9 inside a local virtual environment. Dependencies can be installed using:
 
 ```powershell
 pip install -r requirements.txt
@@ -370,9 +402,11 @@ The models are evaluated using the following metrics:
 | Precision | Measures correctness of predicted attack samples |
 | Recall | Measures ability to detect actual attack samples |
 | F1-score | Balances precision and recall |
-| ROC-AUC | Measures classification separability |
+| ROC-AUC | Measures classification separability using predicted probability scores |
 | Inference Latency | Measures real-time suitability |
 | CPU/RAM Usage | Measures resource overhead |
+
+ROC-AUC was calculated using predicted probability scores. For Random Forest and SVM, probability estimates were obtained using `predict_proba()`. For CNN-LSTM, sigmoid output probabilities were used and evaluated against binary ground-truth labels.
 
 ---
 
@@ -463,6 +497,52 @@ results/figures/resource_overhead.png
 
 ---
 
+## Supplementary Docker/Kali/hping3 Lab
+
+A supplementary controlled Docker laboratory setup is provided for local reproducibility.
+
+The lab includes:
+
+- Nginx victim web server
+- Kali Linux container
+- hping3 installed inside the Kali container
+- Isolated Docker bridge network
+- Network topology documentation
+- Safe local connectivity test script
+
+The configuration is available in:
+
+```text
+docker/docker-compose-lab.yml
+docker/kali/Dockerfile
+docs/network_topology.md
+scripts/traffic_generation/
+```
+
+This setup is intended only for local academic testing. The main model experiments use the CIC-DDoS2019 dataset, while the Docker/Kali/hping3 configuration is provided as supplementary controlled laboratory material.
+
+### Docker Lab Startup
+
+From the repository root:
+
+```powershell
+docker compose -f docker/docker-compose-lab.yml up --build
+```
+
+Open another terminal:
+
+```powershell
+docker exec -it kali_hping3_lab bash
+```
+
+Inside the Kali container:
+
+```bash
+bash /app/scripts/traffic_generation/hping3_connectivity_test.sh
+```
+
+---
+
 ## Visualization Scripts
 
 The repository includes thesis visualization scripts inside:
@@ -502,11 +582,11 @@ The configuration file includes:
 
 ---
 
-## Expected Results
+## Experimental Scope Clarification
 
-The expected result is that the hybrid CNN-LSTM model provides strong detection performance while maintaining acceptable inference latency for real-time DDoS detection and mitigation.
+The main model experiments in this repository use the CIC-DDoS2019 dataset and generated evaluation outputs. The Docker/Kali/hping3 laboratory setup is provided as supplementary controlled reproducibility material.
 
-The project aims to demonstrate that combining CNN-based spatial feature extraction with LSTM-based temporal sequence learning can improve DDoS detection performance compared with traditional machine learning baselines.
+The hping3 script included in this repository is a small local connectivity test for the isolated Docker network. It is not intended for public-network traffic generation, unauthorized testing, or real attack execution.
 
 ---
 
@@ -547,6 +627,10 @@ Baseline experiments: Completed
 CNN-LSTM experiment: Completed
 Evaluation comparison: Completed
 Mitigation simulation: Completed
+Docker configuration: Added
+Supplementary Kali/hping3 lab: Added
+Network topology documentation: Added
+Virtual environment configuration: Added
 ```
 
 ---
@@ -558,6 +642,9 @@ GitHub: [kassim206](https://github.com/kassim206)
 
 Project Website:  
 https://kassim206.github.io/hybrid-cnn-lstm-ddos-detection/
+
+Source Code Repository:  
+https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection
 
 Final Experimental Release:  
 https://github.com/kassim206/hybrid-cnn-lstm-ddos-detection/releases/tag/v1.1-thesis-experiments

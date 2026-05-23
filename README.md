@@ -186,8 +186,16 @@ hybrid-cnn-lstm-ddos-detection/
 │
 ├── results/
 │   ├── figures/
+│   │   ├── model_comparison.png
+│   │   ├── latency_comparison.png
+│   │   ├── cnn_lstm_training_curves.png
+│   │   ├── mitigation_response.png
+│   │   ├── resource_overhead.png
+│   │   └── sample_attack_prediction_results.png
 │   ├── metrics/
 │   ├── tables/
+│   │   ├── model_comparison.csv
+│   │   ├── mitigation_results.csv
 │   │   ├── sample_attack_prediction_test.csv
 │   │   └── sample_attack_prediction_summary.csv
 │   └── README.md
@@ -214,6 +222,7 @@ hybrid-cnn-lstm-ddos-detection/
 │   ├── 06_test_mitigation.py
 │   ├── 07_generate_chapter2_graphs.py
 │   ├── 08_test_sample_predictions.py
+│   ├── 09_plot_sample_attack_test.py
 │   ├── traffic_generation/
 │   │   ├── README.md
 │   │   └── hping3_connectivity_test.sh
@@ -316,6 +325,67 @@ pip install -r requirements.txt
 
 ---
 
+## Research Reproducibility
+
+This repository provides the main files required to reproduce the final thesis experiments.
+
+| Component | Location |
+|---|---|
+| Dataset instructions | `data/README.md` |
+| Virtual environment configuration | `requirements.txt`, `environment_info.txt` |
+| Baseline model experiments | `scripts/03_train_baselines.py` |
+| CNN-LSTM experiment | `scripts/04_train_cnn_lstm.py` |
+| Model comparison and evaluation | `scripts/05_evaluate_models.py` |
+| Sample attack prediction test | `scripts/08_test_sample_predictions.py` |
+| Sample attack prediction graph | `scripts/09_plot_sample_attack_test.py` |
+| Mitigation simulation | `scripts/06_test_mitigation.py` |
+| Result tables | `results/tables/` |
+| Result metrics | `results/metrics/` |
+| Result figures | `results/figures/` |
+| Docker/Kali/hping3 supplementary lab | `docker/`, `scripts/traffic_generation/`, `docs/network_topology.md` |
+
+The main model experiments use the processed CIC-DDoS2019 dataset. The Docker/Kali/hping3 files are provided as supplementary controlled laboratory material for local reproducibility.
+
+---
+
+## How to Reproduce Results
+
+1. Create and activate a Python 3.9 virtual environment.
+2. Install dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+3. Place the CIC-DDoS2019 CSV files or processed sample files inside the `data/` directory.
+4. Run the full experiment pipeline:
+
+```powershell
+python scripts\run_all_old.py
+```
+
+5. Run the sample attack prediction test:
+
+```powershell
+python scripts\08_test_sample_predictions.py
+```
+
+6. Generate the sample attack prediction graph:
+
+```powershell
+python scripts\09_plot_sample_attack_test.py
+```
+
+7. Generated outputs are saved in:
+
+```text
+results/metrics/
+results/tables/
+results/figures/
+```
+
+---
+
 ## Running the Project
 
 Run the main project pipeline:
@@ -341,6 +411,7 @@ python scripts\05_evaluate_models.py
 python scripts\06_test_mitigation.py
 python scripts\07_generate_chapter2_graphs.py
 python scripts\08_test_sample_predictions.py
+python scripts\09_plot_sample_attack_test.py
 ```
 
 Run visualization scripts:
@@ -485,6 +556,7 @@ The generated sample prediction outputs are stored in:
 ```text
 results/tables/sample_attack_prediction_test.csv
 results/tables/sample_attack_prediction_summary.csv
+results/figures/sample_attack_prediction_results.png
 ```
 
 This is a dataset-based attack sample prediction test. It does not perform live public-network traffic generation.
@@ -666,6 +738,7 @@ Baseline experiments: Completed
 CNN-LSTM experiment: Completed
 Evaluation comparison: Completed
 Sample attack prediction test: Completed
+Sample attack prediction graph: Completed
 Mitigation simulation: Completed
 Docker configuration: Added
 Supplementary Kali/hping3 lab: Added

@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  victim-web:
+    image: nginx:latest
+    container_name: victim_web_server
+    ports:
+      - "8080:80"
+    networks:
+      - ddos_lab_net
+
+  kali-lab:
+    build:
+      context: ./kali
+      dockerfile: Dockerfile
+    container_name: kali_hping3_lab
+    tty: true
+    stdin_open: true
+    networks:
+      - ddos_lab_net
+    depends_on:
+      - victim-web
+
+networks:
+  ddos_lab_net:
+    driver: bridge

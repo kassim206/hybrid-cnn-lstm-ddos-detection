@@ -472,6 +472,14 @@ The trained Random Forest and SVM models were used to classify these samples. Th
 | Random Forest | 200 | 100 | 100 | 0 | 1 | 99 |
 | SVM | 200 | 100 | 100 | 0 | 2 | 98 |
 
+<p align="center">
+  <img src="results/figures/sample_attack_prediction_results.png" width="700">
+</p>
+
+<p align="center">
+  <i>Sample attack prediction results for Random Forest and SVM.</i>
+</p>
+
 The generated sample prediction outputs are stored in:
 
 ```text

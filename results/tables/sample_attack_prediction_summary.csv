@@ -1,0 +1,3 @@
+model,sample_size,benign_samples,attack_samples,accuracy,precision,recall,f1_score,true_negatives,false_positives,false_negatives,true_positives
+Random Forest,200,100,100,0.995,1.0,0.99,0.9949748743718593,100,0,1,99
+SVM,200,100,100,0.99,1.0,0.98,0.98989898989899,100,0,2,98

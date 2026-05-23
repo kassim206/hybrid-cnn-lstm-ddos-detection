@@ -31,7 +31,7 @@
 Master Thesis, Applied Informatics  
 Vytautas Magnus University  
 Faculty of Informatics  
-Supervisor: **Prof. Dr. Tomas Krilavičius**  
+Supervisor: **Prof. Dr. Audrius Zajanckauskas**  
 Year: **2026**
 
 ---

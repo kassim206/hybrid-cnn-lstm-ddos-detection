@@ -188,6 +188,8 @@ hybrid-cnn-lstm-ddos-detection/
 │   ├── figures/
 │   ├── metrics/
 │   ├── tables/
+│   │   ├── sample_attack_prediction_test.csv
+│   │   └── sample_attack_prediction_summary.csv
 │   └── README.md
 │
 ├── thesis_figures/
@@ -211,6 +213,7 @@ hybrid-cnn-lstm-ddos-detection/
 │   ├── 05_evaluate_models.py
 │   ├── 06_test_mitigation.py
 │   ├── 07_generate_chapter2_graphs.py
+│   ├── 08_test_sample_predictions.py
 │   ├── traffic_generation/
 │   │   ├── README.md
 │   │   └── hping3_connectivity_test.sh
@@ -337,6 +340,7 @@ python scripts\04_train_cnn_lstm.py
 python scripts\05_evaluate_models.py
 python scripts\06_test_mitigation.py
 python scripts\07_generate_chapter2_graphs.py
+python scripts\08_test_sample_predictions.py
 ```
 
 Run visualization scripts:
@@ -387,8 +391,9 @@ The research workflow follows these main stages:
 4. Baseline model training using Random Forest and SVM
 5. Hybrid CNN-LSTM model training
 6. Model evaluation and comparison
-7. Real-time mitigation prototype testing
-8. Visualization of experimental results
+7. Sample attack prediction testing
+8. Real-time mitigation prototype testing
+9. Visualization of experimental results
 
 ---
 
@@ -451,6 +456,30 @@ results/tables/model_comparison.csv
 results/figures/model_comparison.png
 results/figures/latency_comparison.png
 ```
+
+---
+
+## Sample Attack Prediction Test
+
+A sample-level prediction test was performed using processed CIC-DDoS2019 test records. The test selected **100 BENIGN samples** and **100 ATTACK samples** from the processed test set.
+
+The trained Random Forest and SVM models were used to classify these samples. This test verifies that the trained models can process individual benign and attack examples from the prepared dataset.
+
+### Sample Test Summary
+
+| Model | Sample Size | BENIGN Samples | ATTACK Samples | False Positives | False Negatives | True Positives |
+|---|---:|---:|---:|---:|---:|---:|
+| Random Forest | 200 | 100 | 100 | 0 | 1 | 99 |
+| SVM | 200 | 100 | 100 | 0 | 2 | 98 |
+
+The generated sample prediction outputs are stored in:
+
+```text
+results/tables/sample_attack_prediction_test.csv
+results/tables/sample_attack_prediction_summary.csv
+```
+
+This is a dataset-based attack sample prediction test. It does not perform live public-network traffic generation.
 
 ---
 
@@ -588,6 +617,8 @@ The main model experiments in this repository use the CIC-DDoS2019 dataset and g
 
 The hping3 script included in this repository is a small local connectivity test for the isolated Docker network. It is not intended for public-network traffic generation, unauthorized testing, or real attack execution.
 
+The sample attack prediction test uses processed CIC-DDoS2019 dataset records. It verifies model predictions on dataset-based benign and attack samples, not live attack traffic.
+
 ---
 
 ## Ethical Use Notice
@@ -626,6 +657,7 @@ Thesis figures: Added
 Baseline experiments: Completed
 CNN-LSTM experiment: Completed
 Evaluation comparison: Completed
+Sample attack prediction test: Completed
 Mitigation simulation: Completed
 Docker configuration: Added
 Supplementary Kali/hping3 lab: Added

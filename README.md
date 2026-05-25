@@ -145,7 +145,7 @@ The main objectives of this project are:
 ### Chapter 3 Training Curves
 
 <p align="center">
-  <img src="thesis_figures/figure_3.2_training_curves.png" width="700">
+  <img src="thesis_figures/figure_4.2_training_curves.png" width="700">
 </p>
 
 ### Chapter 3 Performance Comparison

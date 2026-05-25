@@ -1,5 +1,7 @@
 from pathlib import Path
 import time
+import json
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,6 +37,22 @@ RANDOM_STATE = 42
 
 def load_dataset():
     print("Loading processed dataset...")
+
+    required_files = [
+        DATA_DIR / "X_train.csv",
+        DATA_DIR / "X_val.csv",
+        DATA_DIR / "X_test.csv",
+        DATA_DIR / "y_train.csv",
+        DATA_DIR / "y_val.csv",
+        DATA_DIR / "y_test.csv",
+    ]
+
+    for file_path in required_files:
+        if not file_path.exists():
+            raise FileNotFoundError(
+                f"Required processed dataset file not found: {file_path}\n"
+                "Run scripts/02_preprocess_data.py first or place processed files in data/processed/."
+            )
 
     X_train = pd.read_csv(DATA_DIR / "X_train.csv")
     X_val = pd.read_csv(DATA_DIR / "X_val.csv")
@@ -94,6 +112,15 @@ def build_cnn_lstm_model(input_shape):
     return model
 
 
+def save_training_history(history):
+    history_path = METRICS_DIR / "cnn_lstm_training_history.json"
+
+    with open(history_path, "w", encoding="utf-8") as f:
+        json.dump(history.history, f, indent=4)
+
+    print(f"Training history saved to: {history_path}")
+
+
 def calculate_metrics(model, X_test_seq, y_test_seq):
     print("Evaluating CNN-LSTM model...")
 
@@ -112,26 +139,32 @@ def calculate_metrics(model, X_test_seq, y_test_seq):
         "f1_score": f1_score(y_test_seq, y_pred, zero_division=0),
         "roc_auc": roc_auc_score(y_test_seq, y_pred_proba),
         "latency_ms_per_sample": latency_ms,
+        "sequence_length": SEQUENCE_LENGTH,
+        "epochs_configured": EPOCHS,
+        "batch_size": BATCH_SIZE,
+        "test_sequences": len(y_test_seq),
     }
 
     return metrics
 
 
 def plot_training_history(history):
-    print("Saving CNN-LSTM training curve figure...")
+    print("Saving CNN-LSTM training curve figure from real training history...")
 
-    plt.figure(figsize=(10, 6))
+    epochs = range(1, len(history.history["loss"]) + 1)
 
-    plt.plot(history.history["accuracy"], label="Training Accuracy")
-    plt.plot(history.history["val_accuracy"], label="Validation Accuracy")
-    plt.plot(history.history["loss"], label="Training Loss")
-    plt.plot(history.history["val_loss"], label="Validation Loss")
+    plt.figure(figsize=(12, 6))
 
-    plt.title("CNN-LSTM Training Curves")
+    plt.plot(epochs, history.history["accuracy"], label="Training Accuracy")
+    plt.plot(epochs, history.history["val_accuracy"], label="Validation Accuracy")
+    plt.plot(epochs, history.history["loss"], label="Training Loss")
+    plt.plot(epochs, history.history["val_loss"], label="Validation Loss")
+
+    plt.title("CNN-LSTM Training Curves from Real Training History")
     plt.xlabel("Epoch")
     plt.ylabel("Value")
     plt.legend()
-    plt.grid(True)
+    plt.grid(True, alpha=0.3)
     plt.tight_layout()
 
     output_path = FIGURE_DIR / "cnn_lstm_training_curves.png"
@@ -180,6 +213,8 @@ def main():
         callbacks=[early_stopping],
         verbose=1
     )
+
+    save_training_history(history)
 
     model_path = MODEL_DIR / "cnn_lstm_model.keras"
     model.save(model_path)
